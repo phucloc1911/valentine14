@@ -1001,8 +1001,8 @@ body {
 .music-btn:hover { background: #39c6d6; color: #000; }
 #lyrics-container {
     position: fixed;
-    top: 20%;
-    left: 20%;
+    top: 10%;
+    left: 50%;
     transform: translate(-50%, -50%);
     color: #a7ffee; /* Màu cùng tông với hoa của bạn */
     font-size: 1rem;
@@ -1013,4 +1013,5 @@ body {
     z-index: 1000;
     pointer-events: none; /* Để không chặn click vào hoa */
     transition: all 0.5s ease;
+
 }
