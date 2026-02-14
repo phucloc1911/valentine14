@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi bà...</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>" Chúc Thảo ngày lễ Valentine ấm ấp ngọt ngào tràn đầy năng lượng cùng ngập tràn điều hạnh phúc nhất, luôn vui vẻ, xinh xắn nheeee "</h1>
+        <a href="flower.html" class="gift-btn">Nhấn vào đây🎁</a>
+    </div>
+
+    <script>
+        // Tạo hiệu ứng hạt lấp lánh bằng JS
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 3 + 1 + 'px';
+                particle.style.width = size;
+                particle.style.height = size;
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = Math.random() * 10 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        createParticles();
+    </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+:root {
+    --primary-color: hsl(349, 100%, 65%);
+    --bg-color: #050505;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* 1. Đường dẫn ảnh: Đảm bảo file ảnh nằm cùng thư mục với index.html */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('valentine-bg.png');
+    
+    /* 2. Full màn hình: Đây là các dòng quan trọng nhất */
+    background-size: cover;        /* Ảnh sẽ co giãn để phủ kín toàn bộ màn hình */
+    background-position: center;   /* Giữ tâm bức ảnh luôn ở giữa */
+    background-repeat: no-repeat;  /* Không cho phép ảnh bị lặp lại (tile) */
+    background-attachment: fixed;  /* Cố định ảnh nền khi cuộn trang */
+
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.container {
+    text-align: center;
+    z-index: 10;
+    padding: 20px;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: 40px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: #f0f0f0;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    animation: fadeInDown 1.5s ease-out;
+}
+
+.gift-btn {
+    position: relative;
+    padding: 18px 45px;
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(255, 77, 109, 0.5);
+    background: rgba(255, 77, 109, 0.1);
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+    backdrop-filter: blur(5px);
+    animation: fadeInUp 1.5s ease-out 0.5s backwards;
+}
+
+.gift-btn:hover {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 30px rgba(255, 77, 109, 0.6);
+    transform: translateY(-5px) scale(1.05);
+}
+
+.particle {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.3;
+    animation: float 20s linear infinite;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
