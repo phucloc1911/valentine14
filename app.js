@@ -45,3 +45,32 @@ if (musicBtn && music) {
         }
     });
 }
+// --- TẠO ĐOM ĐÓM BAY LƯỢN KHẮP MÀN HÌNH ---
+function createFireflies() {
+    const numFireflies = 25; // Số lượng đom đóm (ông có thể tăng giảm tùy ý)
+    
+    for (let i = 0; i < numFireflies; i++) {
+        let firefly = document.createElement('div');
+        firefly.classList.add('firefly');
+        
+        // Vị trí xuất hiện ban đầu ngẫu nhiên trên màn hình
+        firefly.style.left = Math.random() * 100 + 'vw';
+        firefly.style.top = Math.random() * 100 + 'vh';
+        
+        // Hướng bay ngẫu nhiên (tọa độ đích)
+        firefly.style.setProperty('--tx', (Math.random() * 100 - 50) + 'vw');
+        firefly.style.setProperty('--ty', (Math.random() * 100 - 50) + 'vh');
+        
+        // Tốc độ bay (từ 8s đến 18s) và độ trễ ngẫu nhiên để bay không đều nhau
+        let duration = Math.random() * 10 + 8; 
+        let delay = Math.random() * 5; 
+        
+        // Gắn hiệu ứng chuyển động
+        firefly.style.animation = `fly ${duration}s ${delay}s infinite ease-in-out alternate`;
+        
+        document.body.appendChild(firefly);
+    }
+}
+
+// Gọi hàm để chạy luôn khi load trang
+createFireflies();

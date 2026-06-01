@@ -262,3 +262,29 @@ h1 {
     0% { transform: translateY(0) rotate(5deg); }
     100% { transform: translateY(40px) rotate(-5deg); }
 }
+/* --- HIỆU ỨNG ĐOM ĐÓM BAY LƯỢN --- */
+.firefly {
+    position: fixed;
+    width: 4px; /* Kích thước con đom đóm */
+    height: 4px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #e6f836, 0 0 15px #e6f836, 0 0 20px #e6f836; /* Ánh sáng vàng xanh */
+    pointer-events: none; /* Không chặn click chuột của người dùng */
+    z-index: 99; /* Nằm trên nền nhưng dưới lời bài hát */
+    opacity: 0;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0, 0) scale(0.5);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% {
+        /* Bay đến tọa độ ngẫu nhiên (--tx, --ty) được cấp bởi JS */
+        transform: translate(var(--tx), var(--ty)) scale(1.2);
+        opacity: 0;
+    }
+}

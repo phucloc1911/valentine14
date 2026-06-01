@@ -1015,3 +1015,326 @@ body {
     transition: all 0.5s ease;
 
 }
+/* --- CSS CHO CON BƯỚM BAY ĐỘNG (100% CSS) --- */
+
+.butterfly-space {
+    position: fixed;
+    top: 5vmin; 
+    left: 10vmin;
+    right: 10vmin;
+    height: 40vh; 
+    pointer-events: none; 
+    z-index: 200; 
+}
+
+.butterfly-container {
+    position: absolute;
+    /* Hoạt ảnh di chuyển ngẫu nhiên khắp màn hình */
+    animation: move-around 12s infinite ease-in-out alternate;
+}
+
+/* Phần thân bướm tạo không gian 3D */
+.butterfly {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    transform-style: preserve-3d;
+    transform: rotateX(40deg) rotateZ(15deg); /* Nghiêng để thấy cánh đập 3D */
+    filter: drop-shadow(0 0 10px rgba(230, 248, 54, 0.6)); /* Phát sáng như đom đóm */
+}
+
+/* Cánh bướm chung */
+.wing {
+    position: absolute;
+    top: 0;
+    width: 15px;
+    height: 25px;
+    background: linear-gradient(to bottom, #ff7b00, #ffc400); /* Màu cam gradient */
+    border: 1px solid #333;
+    opacity: 0.85; /* Hơi trong suốt một xíu cho mờ ảo */
+}
+
+/* Định hình cánh trái và vỗ cánh */
+.left-wing {
+    left: 0;
+    border-radius: 50% 40% 10% 80%; /* Uốn cong thành hình cánh */
+    transform-origin: right center; /* Bản lề vỗ cánh ở bên phải */
+    animation: flap-l 0.15s infinite alternate ease-in-out;
+}
+
+/* Định hình cánh phải và vỗ cánh */
+.right-wing {
+    left: 15px;
+    border-radius: 40% 50% 80% 10%; /* Lật ngược hình dáng cánh trái */
+    transform-origin: left center; /* Bản lề vỗ cánh ở bên trái */
+    animation: flap-r 0.15s infinite alternate ease-in-out;
+}
+
+/* Hiệu ứng gập cánh trái */
+@keyframes flap-l {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(65deg); }
+}
+
+/* Hiệu ứng gập cánh phải */
+@keyframes flap-r {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(-65deg); }
+}
+
+/* Đường bay */
+@keyframes move-around {
+    0% { transform: translate(0, 0) rotate(5deg); }
+    20% { transform: translate(20vw, 10vh) rotate(-10deg); }
+    40% { transform: translate(45vw, -5vh) rotate(15deg); }
+    60% { transform: translate(15vw, 15vh) rotate(0deg); }
+    80% { transform: translate(-10vw, 5vh) rotate(-12deg); }
+    100% { transform: translate(0, 0) rotate(5deg); }
+}
+/* --- CẤU HÌNH CHI TIẾT CHO TỪNG CON BƯỚM --- */
+
+/* Con 1: Giữ nguyên size, bay tà tà */
+.b-1 {
+    left: 5%;
+    top: 10%;
+    animation: move-around 14s infinite ease-in-out alternate;
+}
+
+/* Con 2: Thu nhỏ lại, xuất phát từ bên kia màn hình, bay ngược nhịp */
+.b-2 {
+    left: 45%;
+    top: 25%;
+    animation: move-around 17s infinite ease-in-out alternate-reverse;
+}
+.b-2 .butterfly {
+    /* Thu nhỏ 75% và đổi góc nghiêng */
+    transform: rotateX(40deg) rotateZ(-20deg) scale(0.75); 
+}
+/* Làm cho cánh con thứ 2 đập nhanh hơn xíu */
+.b-2 .left-wing { animation: flap-l 0.12s infinite alternate ease-in-out; }
+.b-2 .right-wing { animation: flap-r 0.12s infinite alternate ease-in-out; }
+
+/* Con 3: Bướm tiên tử, màu xanh dương/tím phát sáng rực rỡ */
+.b-3 {
+    left: 20%;
+    top: 35%;
+    /* Delay âm để nó không xuất phát cùng lúc với 2 con kia */
+    animation: move-around 12s infinite ease-in-out alternate;
+    animation-delay: -5s; 
+}
+.b-3 .butterfly {
+    transform: rotateX(40deg) rotateZ(35deg) scale(0.6);
+    /* Hue-rotate xoay vòng màu biến cam thành xanh bao đẹp */
+    filter: drop-shadow(0 0 12px rgba(54, 230, 248, 0.8)) hue-rotate(160deg); 
+}
+.b-3 .left-wing { animation: flap-l 0.1s infinite alternate ease-in-out; }
+.b-3 .right-wing { animation: flap-r 0.1s infinite alternate ease-in-out; }
+/* --- BƯỚM SỐ 4: MÀU HỒNG ĐÀO --- */
+.b-4 {
+    left: 60%;
+    top: 15%;
+    animation: move-around 16s infinite ease-in-out;
+    animation-delay: -3s; 
+}
+.b-4 .butterfly {
+    transform: rotateX(40deg) rotateZ(-15deg) scale(0.85);
+    /* hue-rotate(290deg) sẽ biến màu cam thành màu hồng neon */
+    filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.8)) hue-rotate(290deg); 
+}
+
+/* ============================================== */
+/* --- CHUỒN CHUỒN PHÁT SÁNG (DRAGONFLY) --- */
+/* ============================================== */
+
+.dragonfly-container {
+    position: absolute;
+    /* Đường bay của chuồn chuồn dart-around (bay nhanh, nán lại) */
+    animation: dart-around 10s infinite ease-in-out;
+}
+
+/* Khung 3D của chuồn chuồn */
+.dragonfly {
+    position: relative;
+    width: 60px;
+    height: 40px;
+    transform-style: preserve-3d;
+    transform: rotateX(20deg) rotateZ(-30deg) scale(0.6);
+    filter: drop-shadow(0 0 10px rgba(173, 255, 47, 0.9)); /* Sáng màu xanh nõn chuối */
+}
+
+/* Thân chuồn chuồn (Dài và ốm) */
+.dragonfly .body {
+    position: absolute;
+    left: 28px;
+    top: 0;
+    width: 4px;
+    height: 40px;
+    background: #bada55;
+    border-radius: 50px;
+}
+
+/* Cánh chuồn chuồn chung (4 cánh dài, mỏng, trong suốt) */
+.dragonfly .d-wing {
+    position: absolute;
+    width: 28px;
+    height: 7px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid #bada55;
+    border-radius: 50%;
+}
+
+/* Vị trí và hiệu ứng đập cánh vèo vèo (0.04s - cực nhanh) */
+.d-left-top { 
+    top: 10px; left: 0; 
+    transform-origin: right center; 
+    animation: d-flap-l 0.04s infinite alternate; 
+}
+.d-left-bottom { 
+    top: 18px; left: 0; 
+    transform-origin: right center; 
+    animation: d-flap-l 0.04s infinite alternate-reverse; 
+}
+.d-right-top { 
+    top: 10px; left: 32px; 
+    transform-origin: left center; 
+    animation: d-flap-r 0.04s infinite alternate; 
+}
+.d-right-bottom { 
+    top: 18px; left: 32px; 
+    transform-origin: left center; 
+    animation: d-flap-r 0.04s infinite alternate-reverse; 
+}
+
+@keyframes d-flap-l { 
+    0% { transform: rotateY(0deg) rotateZ(5deg); } 
+    100% { transform: rotateY(60deg) rotateZ(15deg); } 
+}
+@keyframes d-flap-r { 
+    0% { transform: rotateY(0deg) rotateZ(-5deg); } 
+    100% { transform: rotateY(-60deg) rotateZ(-15deg); } 
+}
+
+/* Đường bay kiểu chuồn chuồn (vút đi, đứng im, rồi lại vút đi) */
+@keyframes dart-around {
+    0% { transform: translate(5vw, 30vh) rotate(0deg); }
+    15% { transform: translate(60vw, 5vh) rotate(25deg); }  /* Vút nhanh lên góc phải */
+    35% { transform: translate(60vw, 5vh) rotate(0deg); }   /* Đứng im tại chỗ vỗ cánh */
+    50% { transform: translate(30vw, 25vh) rotate(-20deg); } /* Vút lùi lại */
+    70% { transform: translate(30vw, 25vh) rotate(0deg); }   /* Đứng im */
+    85% { transform: translate(80vw, 15vh) rotate(15deg); }
+    100% { transform: translate(5vw, 30vh) rotate(0deg); }
+}
+
+.d-1 { left: 0; top: 0; }
+/* ============================================== */
+/* --- CHIM RUỒI PHÁT SÁNG (HUMMINGBIRD) --- */
+/* ============================================== */
+
+.hummingbird-container {
+    position: absolute;
+    /* Quỹ đạo bay: Sà xuống -> Lơ lửng -> Vút đi */
+    animation: hover-around 15s infinite ease-in-out;
+    animation-delay: -2s;
+    z-index: 201;
+}
+
+/* Khung 3D của chim ruồi */
+.hummingbird {
+    position: relative;
+    width: 40px; 
+    height: 40px;
+    transform-style: preserve-3d;
+    transform: scale(0.65) rotateZ(-15deg);
+    /* Phát sáng màu tím Violet ảo diệu */
+    filter: drop-shadow(0 0 15px rgba(186, 85, 211, 0.9)); 
+}
+
+/* Thân chim mập mạp */
+.hummingbird .h-body {
+    position: absolute;
+    top: 10px; left: 10px;
+    width: 18px; height: 26px;
+    background: linear-gradient(to bottom, #d8bfd8, #ba55d3, #8a2be2); /* Đổ bóng gradient tím */
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+/* Cái mỏ dài để hút mật (chỉa sang trái) */
+.hummingbird .h-beak {
+    position: absolute;
+    top: 12px; left: -14px; 
+    width: 26px; height: 2px;
+    background: #fff;
+    transform: rotate(15deg);
+}
+
+/* Đuôi chẻ xòe ra phía sau */
+.hummingbird .h-tail {
+    position: absolute;
+    top: 32px; left: 22px;
+    width: 10px; height: 18px;
+    background: #8a2be2;
+    border-radius: 0 0 50% 50%;
+    transform: rotate(-30deg);
+}
+
+/* Cánh chim (Dài, vểnh lên trên) */
+.hummingbird .h-wing {
+    position: absolute;
+    top: 2px; left: 16px;
+    width: 14px; height: 32px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50% 50% 10% 10%;
+}
+
+/* Tốc độ đập cánh siêu thanh: 0.025s */
+.h-wing-l { 
+    transform-origin: bottom center; 
+    animation: h-flap-l 0.025s infinite alternate; 
+}
+.h-wing-r { 
+    transform-origin: bottom center; 
+    animation: h-flap-r 0.025s infinite alternate-reverse; 
+}
+
+@keyframes h-flap-l { 
+    0% { transform: rotateY(0deg) rotateZ(-50deg); } 
+    100% { transform: rotateY(70deg) rotateZ(-15deg); } 
+}
+@keyframes h-flap-r { 
+    0% { transform: rotateY(0deg) rotateZ(-50deg); } 
+    100% { transform: rotateY(-70deg) rotateZ(-15deg); } 
+}
+
+/* Đường bay sà xuống hoa rồi lơ lửng */
+/* --- Chốt vị trí xuất phát của chim ruồi ở ngay giữa bụi hoa --- */
+.h-1 {
+    left: 45%; 
+    top: 20%; 
+}
+
+/* --- Đường bay vòng cung xoay quanh tâm xuất phát --- */
+@keyframes hover-around {
+    0% { transform: translate(0vw, -5vh) rotate(0deg); }      /* Đang ở trên đỉnh đầu bụi hoa */
+    20% { transform: translate(15vw, 10vh) rotate(-15deg); }  /* Lượn xuống mép hoa bên phải */
+    40% { transform: translate(5vw, 25vh) rotate(-5deg); }    /* Chui xuống mép dưới bên phải */
+    60% { transform: translate(-10vw, 20vh) rotate(10deg); }  /* Vòng qua mép dưới bên trái */
+    80% { transform: translate(-15vw, 5vh) rotate(15deg); }   /* Vút lên mép trên bên trái */
+    100% { transform: translate(0vw, -5vh) rotate(0deg); }    /* Trở về lại đỉnh đầu */
+}
+/* --- BƯỚM SỐ 5: MÀU ĐỎ RUBY --- */
+.b-5 {
+    left: 75%;
+    top: 25%;
+    /* Bay lượn ngược chiều với mấy con kia để đan xen vào nhau */
+    animation: move-around 13s infinite ease-in-out alternate-reverse;
+    animation-delay: -7s; 
+}
+.b-5 .butterfly {
+    /* Cho nghiêng góc khác và to nhỉnh hơn xíu */
+    transform: rotateX(45deg) rotateZ(20deg) scale(0.9);
+    /* hue-rotate(330deg) sẽ ép dải màu cam chuyển sang đỏ thẫm */
+    filter: drop-shadow(0 0 15px rgba(255, 20, 60, 0.9)) hue-rotate(330deg); 
+}
+/* Cho cánh đập nhịp điệu hơi lơi lơi xíu */
+.b-5 .left-wing { animation: flap-l 0.14s infinite alternate ease-in-out; }
+.b-5 .right-wing { animation: flap-r 0.14s infinite alternate ease-in-out; }
