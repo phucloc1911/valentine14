@@ -7,14 +7,32 @@
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
-
+    <img src="anh2.png" class="funny-meme meme-1" alt="Thỏ hồng">
+    <img src="anh1.png" class="funny-meme meme-2" alt="3 khuôn mặt">
+    <img src="anh3.png" class="funny-meme meme-3" alt="con chó">
+    <img src="anh4.png" class="funny-meme meme-4" alt="con khỉ">
+    <img src="anh5.png" class="funny-meme meme-5" alt="sin">
     <div class="container">
-        <h1>" Chúc Thảo ngày lễ Valentine ấm ấp ngọt ngào tràn đầy năng lượng cùng ngập tràn điều hạnh phúc nhất, luôn vui vẻ, xinh xắn nheeee "</h1>
-        <a href="flower.html" class="gift-btn">Nhấn vào đây🎁</a>
+        <h1></h1>
+        
+        <div class="button-group">
+            <div class="mail-btn" id="openMail">💌 Mở hộp thư</div>
+            <a href="flower.html" class="gift-btn">Nhấn vào đây🎁</a>
+        </div>
+    </div>
+
+    <div id="letterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeMail">&times;</span>
+            <h2>Gửi Thảo 💌,</h2>
+            <p>Ở đây ông có thể viết những lời sến súa, tình cảm dài thiệt dài dành cho Thảo nha...</p>
+            <p>Cảm ơn bà vì đã luôn ở bên tui. Chúc bà một ngày Valentine thật ý nghĩa và hạnh phúc!</p>
+            <p>Thương ❤️</p>
+        </div>
     </div>
 
     <script>
-        // Tạo hiệu ứng hạt lấp lánh bằng JS
+        // Hiệu ứng hạt lấp lánh cũ của ông
         function createParticles() {
             for (let i = 0; i < 50; i++) {
                 const particle = document.createElement('div');
@@ -29,6 +47,40 @@
             }
         }
         createParticles();
+
+        // ------------------------------------------------
+        // CODE JAVASCRIPT MỚI CHO HỘP THƯ
+        // ------------------------------------------------
+        const mailBtn = document.getElementById('openMail');
+        const modal = document.getElementById('letterModal');
+        const closeBtn = document.getElementById('closeMail');
+
+        // Mở thư
+        mailBtn.onclick = function() {
+            modal.style.display = "flex";
+            // Dùng setTimeout để hiệu ứng CSS transition hoạt động mượt
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        }
+
+        // Đóng thư khi bấm dấu X
+        closeBtn.onclick = function() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 400); // Đợi 400ms cho hiệu ứng mờ dần xong mới ẩn hẳn
+        }
+
+        // Đóng thư khi click ra ngoài vùng bức thư
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = "none";
+                }, 400);
+            }
+        }
     </script>
 </body>
 </html>

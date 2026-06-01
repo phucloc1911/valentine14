@@ -60,6 +60,7 @@ h1 {
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block;
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
     backdrop-filter: blur(5px);
     animation: fadeInUp 1.5s ease-out 0.5s backwards;
 }
@@ -95,4 +96,169 @@ h1 {
     10% { opacity: 0.5; }
     90% { opacity: 0.5; }
     100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* Sắp xếp 2 nút nằm ngang */
+.button-group {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Để tự rớt dòng trên điện thoại */
+}
+
+/* Nút hộp thư */
+.mail-btn {
+    position: relative;
+    padding: 18px 45px;
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    animation: fadeInUp 1.5s ease-out 0.5s backwards;
+}
+
+.mail-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: #fff;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* --- GIAO DIỆN BỨC THƯ (MODAL) --- */
+
+.modal {
+    display: none; /* Ẩn mặc định */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Nền mờ tối */
+    -webkit-backdrop-filter: blur(5px); /* Safari 9+, iOS Safari 9+ */
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.modal.show {
+    opacity: 1;
+}
+
+/* Nội dung thư (Tờ giấy) */
+.modal-content {
+    background: #fff5f5; /* Màu giấy hơi hồng nhẹ */
+    color: #333;
+    padding: 40px;
+    border-radius: 15px;
+    width: 85%;
+    max-width: 500px;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform: translateY(-50px) scale(0.9);
+    transition: all 0.4s ease;
+}
+
+/* Hiệu ứng khi thư hiện ra */
+.modal.show .modal-content {
+    transform: translateY(0) scale(1);
+}
+
+/* Nút X tắt thư */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #ff4d6d;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-btn:hover {
+    color: #d90429;
+    transform: scale(1.2);
+}
+
+/* Typography trong thư */
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    text-align: left;
+    text-shadow: none; /* Tắt viền sáng của h1 bên ngoài */
+    animation: none;
+}
+
+.modal-content p {
+    line-height: 1.6;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #444;
+}
+.funny-meme {
+    position: fixed; /* Cố định trên màn hình */
+    z-index: 5; /* Nằm dưới cái hộp thư và các nút, nhưng nằm trên nền */
+    pointer-events: none; /* Tránh việc lỡ click trúng ảnh làm kẹt nút bấm */
+    opacity: 0.8; /* Hơi mờ một chút cho ảo ảo, nếu muốn rõ thì đổi thành 1 */
+}
+
+/* Con thỏ hồng: Cho nó lắc qua lắc lại ở góc trái bên dưới */
+.meme-1 {
+    bottom: 20px;
+    left: 20px;
+    width: 150px; /* Chỉnh kích thước to nhỏ tùy ý */
+    animation: lacQuaLacLai 3s ease-in-out infinite alternate;
+}
+
+/* 3 cái mặt trong hộp: Cho nó trôi lên trôi xuống ở góc phải bên trên */
+.meme-2 {
+    top: 30px;
+    right: 30px;
+    width: 180px;
+    border-radius: 15px; /* Bo góc xíu cho đẹp */
+    animation: troiLenTroiXuong 4s ease-in-out infinite alternate;
+}
+.meme-3 {
+    top: 30px;
+    left: 50px;
+    width: 150px;
+    border-radius: 15px; /* Bo góc xíu cho đẹp */
+    animation: troiLenTroiXuong 4s ease-in-out infinite alternate;
+}
+.meme-4 {
+    bottom: 20px;
+    right: 50px;
+    width: 150px;
+    border-radius: 15px; /* Bo góc xíu cho đẹp */
+    animation: troiLenTroiXuong 4s ease-in-out infinite alternate;
+}
+.meme-5 {
+    bottom: 20px;
+    right: 700px;
+    width: 150px;
+    border-radius: 15px; /* Bo góc xíu cho đẹp */
+    animation: troiLenTroiXuong 4s ease-in-out infinite alternate;
+}
+/* Hiệu ứng 1: Lắc qua lắc lại */
+@keyframes lacQuaLacLai {
+    0% { transform: translateX(0) rotate(-15deg); }
+    100% { transform: translateX(50px) rotate(15deg); }
+}
+
+/* Hiệu ứng 2: Trôi lên trôi xuống */
+@keyframes troiLenTroiXuong {
+    0% { transform: translateY(0) rotate(5deg); }
+    100% { transform: translateY(40px) rotate(-5deg); }
 }
