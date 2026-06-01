@@ -225,14 +225,14 @@ h1 {
 /* 3 cái mặt trong hộp: Cho nó trôi lên trôi xuống ở góc phải bên trên */
 .meme-2 {
     top: 30px;
-    right: -40px;
+    right: -20px;
     width: 180px;
     border-radius: 15px; /* Bo góc xíu cho đẹp */
     animation: troiLenTroiXuong 4s ease-in-out infinite alternate;
 }
 .meme-3 {
     top: 30px;
-    left: -40px;
+    left: -20px;
     width: 150px;
     border-radius: 15px; /* Bo góc xíu cho đẹp */
     animation: troiLenTroiXuong 4s ease-in-out infinite alternate;
