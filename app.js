@@ -56,3 +56,16 @@ music.ontimeupdate = () => {
         lyricsContainer.style.opacity = 0;
     }
 };
+// Thêm chức năng cho nút Play Music
+const musicBtn = document.getElementById('music-control');
+if (musicBtn && music) {
+    musicBtn.addEventListener('click', () => {
+        if (music.paused) {
+            music.play();
+            musicBtn.innerText = "⏸️ Pause Music"; // Đổi chữ khi đang phát
+        } else {
+            music.pause();
+            musicBtn.innerText = "🎵 Play Music"; // Đổi chữ khi tạm dừng
+        }
+    });
+}
